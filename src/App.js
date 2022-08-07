@@ -1,39 +1,30 @@
 import React from "react";
 import { DustList } from "./components/DustList";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer";
 import { useState } from "react";
-import SelectLoaction from "./components/SelectLoaction";
+import Dropdown from "./components/header/Dropdown";
 import { StationProvider } from "./context/stations";
 
 // footer (내지역보기 , 전체시도보기, 즐겨찾기 ) 기능수행
 
 const App = () => {
-  const [selected, setSelected] = useState({
-    sido: "",
-    station: "",
-  });
-  const [stations, setStations] = useState([]);
-
-   const StationFind = (dustData) => {
-     dustData.map((data) => {
-       return setStations(stations.concat(data.stationName));
-     });
-   };
-
-  console.log(`station 가 가지고있는값: ${stations}`);
+  const [selectedSido, setSelectedSido] = useState("");
+  const [selectedStation, setSelectedSatation] = useState("");
+  
   return (
     <>
       <StationProvider>
-        <SelectLoaction
-          selected={selected}
-          setSelected={setSelected}
-          station={stations}
-        ></SelectLoaction>
+        <Dropdown
+          selectedSido={selectedSido}
+          selectedStation={selectedStation}
+          setSelectedSatation={setSelectedSatation}
+          setSelectedSido={setSelectedSido}
+        ></Dropdown>
         <DustList
-          StationFind={StationFind}
-          selected={selected}
+          selectedSido={selectedSido}
+          selectedStation={selectedStation}
         ></DustList>
-        <Footer></Footer>
+        <Footer setSelectedSido={setSelectedSido}></Footer>
       </StationProvider>
     </>
   );
