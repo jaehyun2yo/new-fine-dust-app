@@ -15,7 +15,10 @@ const fetchDust = async (setdata, selectedSido) => {
   const response = await axios.get(
     `http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?serviceKey=${getParameters["serviceKey"]}&returnType=${getParameters["returnType"]}&numOfRows=${getParameters["numOfRows"]}&pageNo=${getParameters["pageNo"]}&sidoName=${getParameters["sidoName"]}&ver=${getParameters["ver"]}`
   );
-  setdata(response.data["response"]["body"]["items"]);
+
+  setdata(() => {
+    return response.data["response"]["body"]["items"]
+  });
 };
 
 export { fetchDust };

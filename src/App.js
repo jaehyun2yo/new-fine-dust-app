@@ -5,12 +5,10 @@ import { useState } from "react";
 import Dropdown from "./components/header/Dropdown";
 import { StationProvider } from "./context/stations";
 
-// footer (내지역보기 , 전체시도보기, 즐겨찾기 ) 기능수행
-
 const App = () => {
   const [selectedSido, setSelectedSido] = useState("");
   const [selectedStation, setSelectedSatation] = useState("");
-  
+
   return (
     <>
       <StationProvider>
